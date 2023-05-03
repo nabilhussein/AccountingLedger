@@ -23,7 +23,7 @@ public class Ledger {
             String input;
             while ((input = bufreader.readLine()) != null) {
                 String[] details = input.split("\\|");//We split the string by | to get the details of each transaction
-                  //We parse the information of each transaction
+                //We parse the information of each transaction
                 LocalDate date = LocalDate.parse(details[0]);
                 LocalTime time = LocalTime.parse(details[1]);
                 String description = details[2];
@@ -48,7 +48,7 @@ public class Ledger {
     public static void showLedger() {
         Scanner scanner = new Scanner(System.in);
         String choice = "";
-          //The code below wil show the user 5 different options,
+        //The code below wil show the user 5 different options,
         while (!choice.equalsIgnoreCase("X")) {
             System.out.println("Welcome to your Account Ledger!");
             System.out.println("A) All Entries");
@@ -106,7 +106,8 @@ public class Ledger {
             }
         }
     }
-        // The code below will only display payment entries , which is made possible by the code in line 113.
+
+    // The code below will only display payment entries , which is made possible by the code in line 113.
     private static void payments() {
         System.out.println("Payments Entries");
         for (Transaction item : transactions.get()) {
@@ -130,7 +131,7 @@ public class Ledger {
             System.out.println("2) Previous Month");
             System.out.println("3) Year To Date");
             System.out.println("4) Previous Year");
-            System.out.println("5) Search by Vendor");
+            System.out.println("5) View Vendor");
             System.out.println("0) Home");
             System.out.println("Please choose an option:");
 
@@ -173,15 +174,15 @@ public class Ledger {
     }
 
 
-    //
     private static void previousYear() {
         System.out.println("Transactions from the previous year");
         LocalDate currentDate = LocalDate.now();
         int currentYear = currentDate.getYear();
-
+        //Code for showing transaction from last year
         for (Transaction item : transactions.get()) {
             LocalDate transactionDate = item.getDate();
-            if (transactionDate.getYear() == currentYear - 1) {
+            if (transactionDate.getYear() == currentYear - 1) { /*This is the line where we show only transactions
+            from last year by -1 so we can go back one year.*/
                 System.out.println(item.getDate() + " " +
                         item.getTime() + " " + item.getDescription() + " " + item.getVendor() + " " + item.getAmount());
             }
@@ -192,7 +193,8 @@ public class Ledger {
         System.out.println("Transactions from this year");
         LocalDate currentDate = LocalDate.now();
         int currentYear = currentDate.getYear();
-
+        //Code for showing transaction from this year
+        // Which is done by getting the current transaction for this year
         for (Transaction item : transactions.get()) {
             LocalDate transactionDate = item.getDate();
             if (transactionDate.getYear() == currentYear) {
@@ -208,12 +210,13 @@ public class Ledger {
         LocalDate currentDate = LocalDate.now();
         int currentYear = currentDate.getYear();
         int currentMonth = currentDate.getMonthValue();
-
+          /*We kind of doing the same thing as for previous year,
+          but this time we changed to previous month*/
         for (Transaction item : transactions.get()) {
             LocalDate transactionDate = item.getDate();
             int transactionYear = transactionDate.getYear();
             int transactionMonth = transactionDate.getMonthValue();
-
+            //This is where we changed it to vew previous month.
             if (transactionYear == currentYear && transactionMonth == currentMonth - 1) {
                 System.out.println(item.getDate() + " " +
                         item.getTime() + " " + item.getDescription() + " " + item.getVendor() + " " + item.getAmount());
@@ -225,26 +228,28 @@ public class Ledger {
     }
 
     private static void monthToDate() {
-        System.out.println("Transactions from the current month to date");
-        LocalDate currentDate = LocalDate.now();
-        int currentYear = currentDate.getYear();
-        int currentMonth = currentDate.getMonthValue();
-        int currentDay = currentDate.getDayOfMonth();
+        //range from 1st of month to current date
+        // for every date within the range print them
+        LocalDate today = LocalDate.now();
+        LocalDate firstOfCurrentMonth = today.withDayOfMonth(1);
 
-        for (Transaction item : transactions.get()) {
-            LocalDate transactionDate = item.getDate();
-            int transactionYear = transactionDate.getYear();
-            int transactionMonth = transactionDate.getMonthValue();
-            int transactionDay = transactionDate.getDayOfMonth();
-
-            if (transactionYear == currentYear && transactionMonth == currentMonth && transactionDay == currentDay) {
-                System.out.println(item.getDate() + " " +
-                        item.getTime() + " " + item.getDescription() + " " + item.getVendor() + " " + item.getAmount());
-
+        for (Transaction i : transactions.get()) {
+            if (isBetween(today, firstOfCurrentMonth, i)) {
+                System.out.println("Current Month to Date");
+                System.out.printf("%-15s %-15s %-25s %-15s %-10.2f\n", i.getDate(), i.getTime(), i.getDescription(), i.getVendor(), i.getAmount());
             }
         }
     }
+
+    //compares the date of each item to be in an inclusive range from the current date back to the first of the month
+    private static boolean isBetween(LocalDate today, LocalDate firstOfCurrentMonth, Transaction i) {
+        return (i.getDate().isBefore(today) || i.getDate().isEqual(today))
+                && (i.getDate().isAfter(firstOfCurrentMonth) || i.getDate().isEqual(firstOfCurrentMonth));
+
+
+    }
 }
+
 
 
 
