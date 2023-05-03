@@ -90,8 +90,8 @@ public class Ledger {
     private static void allEntries() {
         System.out.println("All Entries");
         for (Transaction item : transactions.get()) {
-            System.out.println(item.getDate() + " " +
-                    item.getTime() + " " + item.getDescription() + " " + item.getVendor() + " " + item.getAmount());
+            System.out.printf("%-13s %-13s %-25s %-25s %-20.2f\n",item.getDate(),
+                    item.getTime() , item.getDescription() , item.getVendor() ,item.getAmount());
         }
 
     }
@@ -101,8 +101,8 @@ public class Ledger {
         System.out.println("Deposit Entries");
         for (Transaction item : transactions.get()) {
             if (item.getAmount() > 0) { //This is the line where we show only deposits
-                System.out.println(item.getDate() + " " +
-                        item.getTime() + " " + item.getDescription() + " " + item.getVendor() + " " + item.getAmount());
+                System.out.printf("%-13s %-13s %-25s %-25s %-20.2f\n",item.getDate(),
+                        item.getTime() , item.getDescription() , item.getVendor() ,item.getAmount());
             }
         }
     }
@@ -112,8 +112,8 @@ public class Ledger {
         System.out.println("Payments Entries");
         for (Transaction item : transactions.get()) {
             if (item.getAmount() < 0) { //This is the line where we show only payments
-                System.out.println(item.getDate() + " " +
-                        item.getTime() + " " + item.getDescription() + " " + item.getVendor() + " " + item.getAmount());
+                System.out.printf("%-13s %-13s %-25s %-25s %-20.2f\n",item.getDate(),
+                        item.getTime() , item.getDescription() , item.getVendor() ,item.getAmount());
             }
         }
     }
@@ -131,7 +131,7 @@ public class Ledger {
             System.out.println("2) Previous Month");
             System.out.println("3) Year To Date");
             System.out.println("4) Previous Year");
-            System.out.println("5) View Vendor");
+            System.out.println("5) Search by Vendor");
             System.out.println("0) Home");
             System.out.println("Please choose an option:");
 
@@ -164,14 +164,20 @@ public class Ledger {
 
     }
 
-    //When the user chooses option 5, it will show the user all the vendor names.
+    //When the user chooses option 5, it will show the user all the vendor names they search for.
     private static void searchByVendor() {
+        System.out.println("Enter the vendor's name you would like to search by: ");
+        Scanner scanner = new Scanner(System.in);
+        String vendor = scanner.nextLine();
+
         System.out.println("The vendor name");
-        for (Transaction item : transactions.get()) {
-            System.out.println(item.getVendor());
+        for (Transaction i : transactions.get()) {
+            if (i.getVendor().equalsIgnoreCase(vendor)) {
+                System.out.printf("%-13s %-13s %-25s %-25s %-20.2f\n", i.getDate(), i.getTime(), i.getDescription(), i.getVendor(), i.getAmount());
+            }
         }
 
-    }
+            }
 
 
     private static void previousYear() {
@@ -182,9 +188,9 @@ public class Ledger {
         for (Transaction item : transactions.get()) {
             LocalDate transactionDate = item.getDate();
             if (transactionDate.getYear() == currentYear - 1) { /*This is the line where we show only transactions
-            from last year by -1 so we can go back one year.*/
-                System.out.println(item.getDate() + " " +
-                        item.getTime() + " " + item.getDescription() + " " + item.getVendor() + " " + item.getAmount());
+            from last year by -1, so we can go back one year.*/
+                System.out.printf("%-13s %-13s %-25s %-25s %-20.2f\n",item.getDate(),
+                        item.getTime() ,item.getDescription(),item.getVendor() ,item.getAmount());
             }
         }
     }
@@ -198,8 +204,8 @@ public class Ledger {
         for (Transaction item : transactions.get()) {
             LocalDate transactionDate = item.getDate();
             if (transactionDate.getYear() == currentYear) {
-                System.out.println(item.getDate() + " " +
-                        item.getTime() + " " + item.getDescription() + " " + item.getVendor() + " " + item.getAmount());
+                System.out.printf("%-13s %-13s %-25s %-25s %-20.2f\n",item.getDate(),
+                        item.getTime() ,item.getDescription() ,item.getVendor() ,item.getAmount());
             }
         }
     }
@@ -216,13 +222,13 @@ public class Ledger {
             LocalDate transactionDate = item.getDate();
             int transactionYear = transactionDate.getYear();
             int transactionMonth = transactionDate.getMonthValue();
-            //This is where we changed it to vew previous month.
+            //This is where we changed it to view previous month.
             if (transactionYear == currentYear && transactionMonth == currentMonth - 1) {
-                System.out.println(item.getDate() + " " +
-                        item.getTime() + " " + item.getDescription() + " " + item.getVendor() + " " + item.getAmount());
+                System.out.printf("%-13s %-13s %-25s %-25s %-20.2f\n",item.getDate(),
+                        item.getTime() ,item.getDescription() ,item.getVendor() ,item.getAmount());
             } else if (transactionYear == currentYear - 1 && transactionMonth == 12 && currentMonth == 1) {
-                System.out.println(item.getDate() + " " +
-                        item.getTime() + " " + item.getDescription() + " " + item.getVendor() + " " + item.getAmount());
+                System.out.printf("%-13s %-13s %-25s %-25s %-20.2f\n",item.getDate() ,
+                        item.getTime() ,item.getDescription() , item.getVendor() , item.getAmount());
             }
         }
     }
@@ -232,11 +238,12 @@ public class Ledger {
         // for every date within the range print them
         LocalDate today = LocalDate.now();
         LocalDate firstOfCurrentMonth = today.withDayOfMonth(1);
+        System.out.println("Current Month to Date");
 
         for (Transaction i : transactions.get()) {
             if (isBetween(today, firstOfCurrentMonth, i)) {
-                System.out.println("Current Month to Date");
-                System.out.printf("%-15s %-15s %-25s %-15s %-10.2f\n", i.getDate(), i.getTime(), i.getDescription(), i.getVendor(), i.getAmount());
+
+                System.out.printf("%-13s %-13s %-25s %-25s %-20.2f\n", i.getDate(), i.getTime(), i.getDescription(), i.getVendor(), i.getAmount());
             }
         }
     }
