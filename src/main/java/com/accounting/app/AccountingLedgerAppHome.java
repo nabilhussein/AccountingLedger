@@ -2,10 +2,13 @@ package com.accounting.app;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 
 public class AccountingLedgerAppHome {
+    public static Scanner scanner = new Scanner(System.in);
     // code to show home screen, so we can navigate to other screens,
     // Without the code below the program will not run
     public static void main(String[] args) {
@@ -35,7 +38,7 @@ public class AccountingLedgerAppHome {
                 case "D" -> addDeposit();
                 case "P" -> makePayment();
                 case "L" -> displayLedger();
-                case "X" -> System.out.println("Exiting the application. Goodbye!");
+                case "X" -> System.exit(0);
                 default ->// if the user does not choose an option from the list ,the code below will run
                         System.out.println("Invalid choice. Please try again.");
             }
@@ -45,24 +48,19 @@ public class AccountingLedgerAppHome {
     // code to prompt user for deposit information and save it to the csv file
     private static void addDeposit() {
         //Here will prompt user for deposit information
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter deposit information:");
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter tf = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String date = now.format(df);
+        String time = now.format(tf);
 
-        System.out.print("Date (YYYY-MM-DD): ");// the user will enter the date of deposit , and it will get add it to the transactions.csv file
-        String date = scanner.nextLine();
-
-        System.out.print("Time (HH:MM:SS): ");
-        String time = scanner.nextLine();
-
-        System.out.print("Description: ");
+        System.out.println("Enter item description: ");
         String description = scanner.nextLine();
-
-        System.out.print("Vendor: ");
+        System.out.println("Enter Vendor: ");
         String vendor = scanner.nextLine();
-
-        System.out.print("Amount: ");
-
+        System.out.println("Enter deposit amount: ");
         double amount = scanner.nextDouble();
+        scanner.nextLine();;
 
         //Here will save the deposit information to the transactions.csv file
 
@@ -82,23 +80,17 @@ public class AccountingLedgerAppHome {
     //the code below will make a payment
     private static void makePayment() {
         //Here will prompt user for payment information
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter payment information:");
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter tf = DateTimeFormatter.ofPattern("HH:mm:ss");
+        String date = now.format(df);
+        String time = now.format(tf);
 
-        System.out.print("Date (YYYY-MM-DD): ");
-        String date = scanner.nextLine();
-
-        System.out.print("Time (HH:MM:SS): ");
-        String time = scanner.nextLine();
-
-        System.out.print("Description: ");
+        System.out.println("Enter item description: ");
         String description = scanner.nextLine();
-
-        System.out.print("Vendor: ");
+        System.out.println("Enter Vendor: ");
         String vendor = scanner.nextLine();
-
-        System.out.print("Amount: ");
-
+        System.out.println("Enter payment amount: ");
         double amount = scanner.nextDouble();
 
         //here will save the payment(negative value) information to the transactions.csv file
