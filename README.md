@@ -25,7 +25,7 @@
 
 ### One Interesting Piece of Code from my Project
 
-### One interesting code from my project is when it shows you all entries. This code will let you view all your transactions in one screen. It will display your transactions in a nice format so it could be easy to read. Also, I could use the same code for viewing despite and payment, 
+###is when it shows you all entries. This code will let you view all your transactions in one screen. It will display your transactions in a nice format so it could be easy to read. Also, I could use the same code for viewing despite and payment, 
 
 
 
