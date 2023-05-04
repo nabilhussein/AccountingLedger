@@ -2,6 +2,7 @@
 ### o Description of my project:
 ##### This Application is about tracking all kinds of different transactions. With this Application, you can make a Deposit, Payment with the Date, Time, description, vendor, and the amount you would like to add to your account. All the details will be saved to a csv file. Also in the screen interface, you can view your all entires, deposit, payment, and report. The report option will take you to another new screen, so you view other options. For example, you can view your transaction by month, or year, or you can search by the vendor in the report screen. Overall this app will let you track your financial transportation efficiently.
 
+
 ###  Images of my Application Screens
 
 
@@ -25,7 +26,9 @@
 
 ### One Interesting Piece of Code from my Project
 
-### It's when it shows you all entries. This code will let you view all your transactions in one screen. It will display your transactions in a nice format so it could be easy to read. Also, I could use the same code for viewing despite and payment, 
+### It's when it shows you all entries. This code will let you view all your transactions in one screen. It will display your transactions in a nice format so it could be easy to read. Also, I could use the same code for viewing despite and payment,by changing 
+ one line of code, which is pretty cool.
+![Screenshot 2023-05-04 132817](https://user-images.githubusercontent.com/55296823/236283457-1ac32e81-40f9-46fa-8614-e715f9708615.png)
 
 
 
