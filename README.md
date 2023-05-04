@@ -1,6 +1,28 @@
 # Accounting Ledger Application
 ### o Description of my project:
-##### This Application is about tracking all kinds of different transactions. With this Application, you can make a Deposit, Payment with the Date, Time, description, vendor, and the amount you would like to add to your account. All the details will be saved to a csv file. Also in the screen interface, you can view your all entires, deposit, payment, and report. The report option will take you to another new screen, so you view other options. For example, you can view your transaction by month, or year, or you can search by the vendor in the report screen. Overall this app will let you track your financial transportation efficiently.
+##### This Application is all about tracking all kinds of different transactions. All the transactions will be saved to a file called transactions.cvs
+##### To run the the you need to opne the **AccountingLedgerAppHome** file
+## What it can do
+### In the Home screen you can:
+1. Add Deposit
+2. Make Payment
+3. View the Ladger screen
+4. Exit the application
+### In Ledger screen you can:
+   - View all Entries
+   - View Deposits
+   - View Payments
+   - View Reports
+### In the Reports screen you can view:
+   - Month To Date
+   - Previous Month
+   - Year To Date
+   - Previous Year
+   - Search by Vendor
+   - Go back Home
+  
+     
+
 
 
 ###  Images of my Application Screens
@@ -29,5 +51,6 @@
  one line of code, which is pretty cool.
 ![Screenshot 2023-05-04 132817](https://user-images.githubusercontent.com/55296823/236283457-1ac32e81-40f9-46fa-8614-e715f9708615.png)
 
+##### Thanks to Cristi Savca for helping me out with this project
 
 
