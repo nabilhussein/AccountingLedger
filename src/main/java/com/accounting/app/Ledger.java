@@ -155,7 +155,7 @@ public class Ledger {
                     searchByVendor();
                     break;
                 case "0":
-                    AccountingLedgerAppHome.homeScreen();
+                    AccountingLedgerAppHome.homeScreen(); //Here we go back to the home screen
                 default:
                     System.out.println("Invalid choice. Please try again.");
                     break;

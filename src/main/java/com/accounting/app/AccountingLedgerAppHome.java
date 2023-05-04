@@ -36,7 +36,7 @@ public class AccountingLedgerAppHome {
                 case "P" -> makePayment();
                 case "L" -> displayLedger();
                 case "X" -> System.out.println("Exiting the application. Goodbye!");
-                default ->// if the user does not choose an option the code below will run
+                default ->// if the user does not choose an option from the list ,the code below will run
                         System.out.println("Invalid choice. Please try again.");
             }
         }
