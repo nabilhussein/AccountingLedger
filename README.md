@@ -47,9 +47,10 @@
 ![Screenshot9](https://user-images.githubusercontent.com/55296823/236250151-1d74f67f-3fa7-4ad3-b5d7-e78c3643bba3.png)
 
 
-One Interesting Piece of Code from my Project ,It's when it shows you all entries. This code will let you view all your transactions in one screen. It will display your transactions in a nice format so it could be easy to read. Also, I could use the same code for viewing despite and payment,by changing 
- one line of code, which is pretty cool.
+### One Interesting Piece of Code from my Project
 ![Screenshot 2023-05-04 132817](https://user-images.githubusercontent.com/55296823/236283457-1ac32e81-40f9-46fa-8614-e715f9708615.png)
+ ,It's when it shows you all entries. This code will let you view all your transactions in one screen. It will display your transactions in a nice format so it could be easy to read. Also, I could use the same code for viewing despite and payment,by changing 
+ one line of code, which is pretty cool.
 
 ##### Thanks to Cristi and all my peers for helping me out with this project
 
